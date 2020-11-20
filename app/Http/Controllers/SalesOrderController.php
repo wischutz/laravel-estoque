@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class ProductController extends Controller
+class SalesOrderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -22,8 +22,8 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        //
+    {        
+        return view('admin.remove_product');
     }
 
     /**
@@ -45,7 +45,6 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
     }
 
     /**

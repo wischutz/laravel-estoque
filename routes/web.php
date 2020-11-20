@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SalesOrderController;
+use App\Http\Controllers\PurchaseOrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,8 +25,8 @@ Route::post('/login', [AuthController::class, 'authenticate'])->name('admin.auth
 Route::get('/logoff', [AuthController::class, 'deauthenticate'])->name('admin.deauthenticate')->middleware('auth');
 
 Route::get('/admin', [AuthController::class, 'dashboard'])->name('admin')->middleware('auth');
-Route::get('/admin/add', [ProductController::class, 'showAddForm'])->name('admin.add')->middleware('auth');
-Route::get('/admin/remove', [ProductController::class, 'showRemoveForm'])->name('admin.remove')->middleware('auth');
+Route::get('/admin/add', [PurchaseOrderController::class, 'create'])->name('admin.add')->middleware('auth');
+Route::get('/admin/remove', [SalesOrderController::class, 'create'])->name('admin.remove')->middleware('auth');
 Route::get('/admin/report', [ProductController::class, 'showReport'])->name('admin.report')->middleware('auth');
 
 
