@@ -29,6 +29,13 @@ Route::get('/admin/add', [PurchaseOrderController::class, 'create'])->name('admi
 Route::get('/admin/remove', [SalesOrderController::class, 'create'])->name('admin.remove')->middleware('auth');
 Route::get('/admin/report', [ProductController::class, 'showReport'])->name('admin.report')->middleware('auth');
 
+Route::get('/admin/product', [ProductController::class, 'index'])->name('product.index')->middleware('auth');
+Route::get('/admin/product/create', [ProductController::class, 'create'])->name('product.create')->middleware('auth');
+Route::post('/admin/product', [ProductController::class, 'store'])->name('product.store')->middleware('auth');
+Route::get('/admin/product/{id}/edit', [ProductController::class, 'edit'])->name('product.edit')->middleware('auth');
+Route::post('/admin/product/{id}', [ProductController::class, 'update'])->name('product.update')->middleware('auth');
+Route::get('/admin/product/{id}', [ProductController::class, 'destroy'])->name('product.destroy')->middleware('auth');
+
 
 
 

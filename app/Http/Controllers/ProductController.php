@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Product;
 
 class ProductController extends Controller
 {
@@ -13,7 +14,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $products = Product::all();
+
+        return view('admin.product.index')->with('products', $products);
     }
 
     /**
@@ -23,7 +26,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.product.create');
     }
 
     /**
@@ -33,20 +36,18 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
-    }
+    {        
+        $validatedData = $request->validate([
+            'name' => 'required|max:50',
+            'sku' => 'required|unique:products|max:20',
+            ]);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+        $product = new Product($validatedData);
+
+        $product->save(); 
+
+        return redirect()->route('product.index');
+    }  
 
     /**
      * Show the form for editing the specified resource.
@@ -56,7 +57,9 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $product = Product::find($id);
+        
+        return view('admin.product.edit')->with('product', $product);
     }
 
     /**
@@ -68,7 +71,20 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required|max:50',
+            'sku' => 'required|unique:products,sku,'.$id.'|max:20',
+            ]);
+
+        $product = Product::find($id);        
+        
+        $product->name =  $validatedData['name'];
+        $product->sku =  $validatedData['sku'];
+
+        $product->save();
+
+        return redirect()->route('product.index');
+
     }
 
     /**
@@ -79,6 +95,10 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product = Product::find($id); 
+
+        $product->delete();
+
+        return redirect()->route('product.index');
     }
 }

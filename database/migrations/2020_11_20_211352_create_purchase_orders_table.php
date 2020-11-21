@@ -16,7 +16,7 @@ class CreatePurchaseOrdersTable extends Migration
         Schema::create('purchase_orders', function (Blueprint $table) {
             $table->id();
             $table->foreignId('product_id')->constrained('products');   
-            $table->integer('amount')->unsigned();
+            $table->integer('amount')->unsigned()->default(0);
             $table->timestamps();
         });
     }

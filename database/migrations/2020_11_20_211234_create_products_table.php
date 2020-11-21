@@ -17,7 +17,7 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->string("name", 50);
             $table->string("sku", 30)->unique();
-            $table->integer('amount')->unsigned();
+            $table->integer('amount')->unsigned()->default(0);
             $table->timestamps();
         });
     }
