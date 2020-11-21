@@ -25,8 +25,10 @@ Route::post('/login', [AuthController::class, 'authenticate'])->name('admin.auth
 Route::get('/logoff', [AuthController::class, 'deauthenticate'])->name('admin.deauthenticate')->middleware('auth');
 
 Route::get('/admin', [AuthController::class, 'dashboard'])->name('admin')->middleware('auth');
-Route::get('/admin/add', [PurchaseOrderController::class, 'create'])->name('admin.add')->middleware('auth');
-Route::get('/admin/remove', [SalesOrderController::class, 'create'])->name('admin.remove')->middleware('auth');
+Route::get('/admin/purchase', [PurchaseOrderController::class, 'create'])->name('admin.purchase')->middleware('auth');
+Route::post('/admin/purchase', [PurchaseOrderController::class, 'store'])->name('admin.purchase.store')->middleware('auth');
+Route::get('/admin/sale', [SalesOrderController::class, 'create'])->name('admin.sale')->middleware('auth');
+Route::post('/admin/sale', [SalesOrderController::class, 'store'])->name('admin.sale.store')->middleware('auth');
 Route::get('/admin/report', [ProductController::class, 'showReport'])->name('admin.report')->middleware('auth');
 
 Route::get('/admin/product', [ProductController::class, 'index'])->name('product.index')->middleware('auth');
@@ -34,7 +36,9 @@ Route::get('/admin/product/create', [ProductController::class, 'create'])->name(
 Route::post('/admin/product', [ProductController::class, 'store'])->name('product.store')->middleware('auth');
 Route::get('/admin/product/{id}/edit', [ProductController::class, 'edit'])->name('product.edit')->middleware('auth');
 Route::post('/admin/product/{id}', [ProductController::class, 'update'])->name('product.update')->middleware('auth');
-Route::get('/admin/product/{id}', [ProductController::class, 'destroy'])->name('product.destroy')->middleware('auth');
+Route::get('/admin/product/{id}/delete', [ProductController::class, 'destroy'])->name('product.destroy')->middleware('auth');
+
+
 
 
 

@@ -26,7 +26,7 @@ class AuthController extends Controller
             return redirect()->intended('admin');
         }
 
-        return redirect()->back()->withInput()->withErrors(['Credenciais incorretas.']);
+        return redirect()->back()->withInput()->withErrors(['Incorrect credentials.']);
     }
 
     public function showLoginForm(){
@@ -42,5 +42,4 @@ class AuthController extends Controller
 
         return redirect()->route('admin.login');
     }
-
 }

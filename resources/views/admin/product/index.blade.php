@@ -1,3 +1,6 @@
+
+<a href="{{ route('product.create') }}">New product</a>
+
 <h3>Product List</h3>
 
 @if(count($products) > 0)
