@@ -1,0 +1,121 @@
+{
+	"info": {
+		"_postman_id": "55b150bf-f5a7-46a1-941c-b745f9753b80",
+		"name": "estoque_laravel",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://estoque.test/api/auth/login?email=test@test.com&password=test",
+					"protocol": "http",
+					"host": [
+						"estoque",
+						"test"
+					],
+					"path": [
+						"api",
+						"auth",
+						"login"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "test@test.com"
+						},
+						{
+							"key": "password",
+							"value": "test"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "baixar-produtos",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9lc3RvcXVlLnRlc3RcL2FwaVwvYXV0aFwvbG9naW4iLCJpYXQiOjE2MDYwNjY5ODksImV4cCI6MTYwNjA3MDU4OSwibmJmIjoxNjA2MDY2OTg5LCJqdGkiOiIybzBwdHlXT1VxbVBuRGVmIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0._vVUO91naABx27xk2Uqu3CCwpwUqlZXTttkhj3OdAUI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://estoque.test/api/baixar-produtos?product_id=1&amount=100",
+					"protocol": "http",
+					"host": [
+						"estoque",
+						"test"
+					],
+					"path": [
+						"api",
+						"baixar-produtos"
+					],
+					"query": [
+						{
+							"key": "product_id",
+							"value": "1"
+						},
+						{
+							"key": "amount",
+							"value": "100"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "adicionar-produtos",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9lc3RvcXVlLnRlc3RcL2FwaVwvYXV0aFwvbG9naW4iLCJpYXQiOjE2MDYwNjg3MjgsImV4cCI6MTYwNjA3MjMyOCwibmJmIjoxNjA2MDY4NzI4LCJqdGkiOiJOVlRETUtxVEYyaUR0cFczIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.SlbDnpkpydWoDkACcAqlueRyR6HXOXkdNwuE6tSTRnk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://estoque.test/api/adicionar-produtos?product_id=1&amount=150",
+					"protocol": "http",
+					"host": [
+						"estoque",
+						"test"
+					],
+					"path": [
+						"api",
+						"adicionar-produtos"
+					],
+					"query": [
+						{
+							"key": "product_id",
+							"value": "1"
+						},
+						{
+							"key": "amount",
+							"value": "150"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
