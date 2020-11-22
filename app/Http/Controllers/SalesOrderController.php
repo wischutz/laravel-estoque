@@ -15,7 +15,7 @@ class SalesOrderController extends Controller
      */
     public function create()
     {        
-        $products =  Product::all();
+        $products =  Product::orderBy('name')->get();
         return view('admin.remove_product')->with('products', $products);
     }
 
@@ -27,6 +27,7 @@ class SalesOrderController extends Controller
      */
     public function store(Request $request)
     {
+        //seleciona o produto para utilizar a quantidade atual como limite máximo na validação abaixo
         $product = Product::find($request->product_id);
 
         $validatedData = $request->validate([
@@ -41,6 +42,6 @@ class SalesOrderController extends Controller
             $product->amount -= $validatedData['amount'];
             $product->save();
         }
-        return redirect()->route('admin');
+        return redirect()->route('product.index');
     }
 }

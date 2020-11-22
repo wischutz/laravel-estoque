@@ -1,21 +1,28 @@
+@extends('admin.dashboard')
 
-<a href="{{ route('product.create') }}">New product</a>
+@section('content')
+    <h3>Product List</h3>
 
-<h3>Product List</h3>
+    @if(count($products) > 0)
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>SKU</th>
+            <th>Amount</th>
+            <th>Stock level</th>
+            <th>Action</th>
+        </tr>
+        @foreach ($products as $product)
+        <tr>
+        <td>{{ $product->name }}</td>
+        <td>{{ $product->sku }}</td>
+        <td>{{ $product->amount }}</td>
+        <td>{{ ($product->amount < 100)? 'low' : 'regular' }}</td>
+        <td><a href="{{ route('product.edit', $product->id) }}">edit</a> | <a href="{{ route('product.destroy', $product->id) }}">delete</a></td>
+        </tr>
+        @endforeach
+    </table>
+    @endif
 
-@if(count($products) > 0)
-<ul>
-    @foreach ($products as $product)
-       <li><a href=" {{ route('product.edit', $product->id ) }} ">Name: {{ $product->name }} - SKU: {{ $product->sku }}</a> | 
-       <a href="{{ route('product.destroy', $product->id) }}">delete</a> </li>
-    @endforeach
-</ul>
-@endif
-
-{{ count($products) }} registered.
-
-@if($errors->any())
-    @foreach ($errors->all() as $error)
-        {{ $error }}
-    @endforeach
-@endif
+    <p>{{ count($products) }} registered.</p>
+@endsection

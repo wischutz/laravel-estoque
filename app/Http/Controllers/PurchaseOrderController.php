@@ -15,7 +15,7 @@ class PurchaseOrderController extends Controller
      */
     public function create()
     {
-        $products = Product::all();
+        $products = Product::orderBy('name')->get();
 
         return view('admin.add_product')->with('products', $products);
     }
@@ -41,6 +41,6 @@ class PurchaseOrderController extends Controller
             $product->amount += $validatedData['amount'];
             $product->save();
         }
-        return redirect()->route('admin');
+        return redirect()->route('product.index');
     }
 }
