@@ -120,8 +120,10 @@ class ProductController extends Controller
                                                 'product_id, 
                                                 products.name, 
                                                 products.sku, 
+                                                purchase_orders.id, 
                                                 purchase_orders.amount, 
-                                                DATE_FORMAT(purchase_orders.created_at,"%Y-%m-%d") as created_at, 
+                                                purchase_orders.source, 
+                                                DATE_FORMAT(purchase_orders.created_at,"%Y-%m-%d") as created_at,                                                 
                                                 \'purchase\' as type'
                                                 )
                                             )
@@ -134,8 +136,10 @@ class ProductController extends Controller
                                         'product_id, 
                                         products.name, 
                                         products.sku, 
+                                        sales_orders.id, 
                                         sales_orders.amount, 
-                                        DATE_FORMAT(sales_orders.created_at,"%Y-%m-%d") as created_at,
+                                        sales_orders.source, 
+                                        DATE_FORMAT(sales_orders.created_at,"%Y-%m-%d") as created_at,                                        
                                         \'sale\' as type'
                                         )
                                     )
@@ -143,7 +147,8 @@ class ProductController extends Controller
                             ->join('products','product_id','=','products.id')
                             ->orderBy('created_at', 'DESC')
                             ->orderBy('name', 'ASC')
-                            ->get();       
+                            ->orderBy('type')
+                            ->get();                             
 
         return view('admin.product.report')->with('orders', $orders);
     }

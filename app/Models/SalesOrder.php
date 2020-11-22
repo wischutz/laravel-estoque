@@ -11,6 +11,7 @@ class SalesOrder extends Model
 
     protected $fillable = [
         'product_id',
-        'amount'        
-    ];
+        'amount',
+        'source'        
+    ];   
 }

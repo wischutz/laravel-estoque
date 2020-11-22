@@ -16,7 +16,7 @@
         @foreach($orders as $order)
             <tr>
                 <td>{{ $order->created_at }}</td>
-                <td>-</td>
+                <td>{{ $order->source }}</td>
                 <td>{{ $order->name }}</td>
                 <td>{{ $order->sku }}</td>
                 <td>{{ $order->type }} ({{ ($order->type === 'sale')? '-' : '+' }})</td>

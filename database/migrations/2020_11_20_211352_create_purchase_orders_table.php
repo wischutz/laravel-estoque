@@ -17,6 +17,7 @@ class CreatePurchaseOrdersTable extends Migration
             $table->id();
             $table->foreignId('product_id')->constrained('products');   
             $table->integer('amount')->unsigned()->default(0);
+            $table->string('source')->default('web');
             $table->timestamps();
         });
     }
